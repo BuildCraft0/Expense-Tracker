@@ -354,6 +354,20 @@
           </article>
         </div>
       </section>
+
+      <section class="gallery-section animate-slide">
+        <div class="gallery-head">
+          <div>
+            <p class="welcome-eyebrow">VISUAL LIBRARY</p>
+            <h2>20 finance visuals for an online expense tracker story.</h2>
+          </div>
+          <p>
+            This section adds a richer content wall to the landing page with dashboard-themed visuals, each paired with a compact description so the experience feels deeper and more editorial.
+          </p>
+        </div>
+
+        <div class="gallery-grid" id="landing-gallery-grid"></div>
+      </section>
     </div>
   </div>
 
@@ -364,10 +378,153 @@
   <script>
     let enteredPIN = '';
     let currentSlide = 1;
+    const galleryItems = [
+      {
+        tag: 'Budgeting',
+        imageLabel: 'Daily Budget',
+        title: 'Daily Budget Snapshot',
+        description: 'A focused view of daily spending limits, quick totals, and instant reminders before casual expenses get out of hand.',
+        colors: ['#0f172a', '#1d4ed8', '#22c55e']
+      },
+      {
+        tag: 'Cashflow',
+        imageLabel: 'Monthly Flow',
+        title: 'Monthly Cashflow Board',
+        description: 'Income and expense movement displayed in one overview so users can understand the real shape of their month.',
+        colors: ['#111827', '#7c3aed', '#f97316']
+      },
+      {
+        tag: 'Categories',
+        imageLabel: 'Category Split',
+        title: 'Expense Categories View',
+        description: 'A visual breakdown of food, travel, shopping, and utility costs that makes category-heavy spending easy to spot.',
+        colors: ['#172554', '#2563eb', '#14b8a6']
+      },
+      {
+        tag: 'Savings',
+        imageLabel: 'Goal Progress',
+        title: 'Savings Goal Tracker',
+        description: 'A progress-focused visual centered around targets, streaks, and milestone planning for smarter long-term saving.',
+        colors: ['#052e16', '#16a34a', '#84cc16']
+      },
+      {
+        tag: 'Receipts',
+        imageLabel: 'Receipt Vault',
+        title: 'Smart Receipt Vault',
+        description: 'An organized receipt capture screen showing attachments, notes, and cleaner proof of spend for every purchase.',
+        colors: ['#1f2937', '#0ea5e9', '#38bdf8']
+      },
+      {
+        tag: 'Wallets',
+        imageLabel: 'Wallet Control',
+        title: 'Multi-Wallet Control',
+        description: 'A balanced layout for cash, bank accounts, cards, and digital wallets with instant balance comparison.',
+        colors: ['#111827', '#8b5cf6', '#ec4899']
+      },
+      {
+        tag: 'Cards',
+        imageLabel: 'Card Spend',
+        title: 'Credit Card Spend Panel',
+        description: 'A panel-style visual for tracking card usage, due dates, and revolving balance pressure across billing cycles.',
+        colors: ['#1e1b4b', '#6366f1', '#f59e0b']
+      },
+      {
+        tag: 'Bills',
+        imageLabel: 'Bill Timeline',
+        title: 'Bill Reminder Timeline',
+        description: 'A timeline image concept that highlights upcoming bills, deadlines, and recurring obligations in a calmer format.',
+        colors: ['#0f172a', '#334155', '#f43f5e']
+      },
+      {
+        tag: 'Reports',
+        imageLabel: 'Trend Report',
+        title: 'Income vs Expense Trend',
+        description: 'A report-style thumbnail for understanding whether earnings are outpacing spending or slowly getting squeezed.',
+        colors: ['#082f49', '#0284c7', '#06b6d4']
+      },
+      {
+        tag: 'Family',
+        imageLabel: 'Shared Budget',
+        title: 'Family Budget Planner',
+        description: 'A more collaborative finance layout for groceries, school payments, household utilities, and monthly essentials.',
+        colors: ['#312e81', '#8b5cf6', '#f472b6']
+      },
+      {
+        tag: 'Freelance',
+        imageLabel: 'Income Desk',
+        title: 'Freelancer Earnings Desk',
+        description: 'A focused income management screen showing client payments, side-project revenue, and irregular earning patterns.',
+        colors: ['#082f49', '#0369a1', '#22c55e']
+      },
+      {
+        tag: 'Tax',
+        imageLabel: 'Tax Summary',
+        title: 'Tax Prep Summary',
+        description: 'A neat summary visual for collecting business expenses, invoice totals, and year-end tax preparation notes.',
+        colors: ['#3f3f46', '#2563eb', '#a855f7']
+      },
+      {
+        tag: 'Travel',
+        imageLabel: 'Trip Spend',
+        title: 'Travel Expense Sheet',
+        description: 'A trip-friendly tracker scene where transport, stays, meals, and daily allowances stay grouped together.',
+        colors: ['#164e63', '#0891b2', '#f59e0b']
+      },
+      {
+        tag: 'Subscriptions',
+        imageLabel: 'Subscription Audit',
+        title: 'Subscription Audit View',
+        description: 'A clean visual for spotting silent recurring charges and deciding which digital services should stay or go.',
+        colors: ['#1f2937', '#7c3aed', '#22c55e']
+      },
+      {
+        tag: 'Emergency',
+        imageLabel: 'Safety Fund',
+        title: 'Emergency Fund Goal',
+        description: 'A savings-first composition built around security planning, reserve growth, and low-stress financial cushions.',
+        colors: ['#052e16', '#15803d', '#3b82f6']
+      },
+      {
+        tag: 'Mobile',
+        imageLabel: 'Quick Entry',
+        title: 'Mobile Expense Entry',
+        description: 'A lighter mobile-inspired image for adding purchases quickly while commuting, shopping, or paying bills outside.',
+        colors: ['#0f172a', '#1d4ed8', '#f472b6']
+      },
+      {
+        tag: 'Business',
+        imageLabel: 'Business Costs',
+        title: 'Business Expense Console',
+        description: 'A sharper finance board for founders managing operations, vendor payments, reimbursements, and team spend.',
+        colors: ['#18181b', '#0f766e', '#14b8a6']
+      },
+      {
+        tag: 'Analytics',
+        imageLabel: 'Spend Heatmap',
+        title: 'Spending Heatmap',
+        description: 'An analysis-driven visual showing where the most financial pressure appears across days, categories, and habits.',
+        colors: ['#111827', '#9333ea', '#f43f5e']
+      },
+      {
+        tag: 'Net Worth',
+        imageLabel: 'Worth Overview',
+        title: 'Net Worth Overview',
+        description: 'A high-level visual combining savings, liabilities, assets, and trend momentum into a stronger personal finance story.',
+        colors: ['#172554', '#2563eb', '#22c55e']
+      },
+      {
+        tag: 'Yearly Review',
+        imageLabel: 'Year Story',
+        title: 'Year-End Financial Story',
+        description: 'A narrative-style wrap-up image for annual patterns, biggest wins, biggest leaks, and the next money goals.',
+        colors: ['#1e1b4b', '#7c3aed', '#fb7185']
+      }
+    ];
 
     document.addEventListener('DOMContentLoaded', () => {
       const state = window.StorageModule.loadState();
       showSlide(1);
+      renderGallery();
 
       if (!state.settings.pinLockEnabled) {
         const onboardingCompleted = localStorage.getItem('EXPENSE_TRACKER_ONBOARDING_DONE') === 'true';
@@ -463,6 +620,91 @@
         behavior: 'smooth',
         block: 'start'
       });
+    }
+
+    function escapeMarkup(text) {
+      return String(text)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function buildGalleryImage(item, index) {
+      const [bgStart, bgEnd, accent] = item.colors;
+      const sparkHeights = [52, 80, 60, 96, 68, 88];
+      const bars = sparkHeights.map((height, barIndex) => {
+        const adjustedHeight = Math.max(32, height - ((index + barIndex) % 5) * 4);
+        const x = 420 + (barIndex * 42);
+        const y = 360 - adjustedHeight;
+        return `<rect x="${x}" y="${y}" width="24" height="${adjustedHeight}" rx="12" fill="${accent}" opacity="${0.4 + (barIndex * 0.08)}" />`;
+      }).join('');
+
+      const dots = Array.from({ length: 5 }, (_, dotIndex) => {
+        const cx = 468 + (dotIndex * 38);
+        const cy = 170 + ((dotIndex + index) % 3) * 28;
+        return `<circle cx="${cx}" cy="${cy}" r="${10 + (dotIndex % 2) * 3}" fill="${accent}" opacity="${0.28 + (dotIndex * 0.08)}" />`;
+      }).join('');
+
+      const svg = `
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" role="img" aria-label="${item.title}">
+          <defs>
+            <linearGradient id="bg${index}" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="${bgStart}" />
+              <stop offset="100%" stop-color="${bgEnd}" />
+            </linearGradient>
+            <linearGradient id="glass${index}" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="rgba(255,255,255,0.18)" />
+              <stop offset="100%" stop-color="rgba(255,255,255,0.05)" />
+            </linearGradient>
+          </defs>
+          <rect width="800" height="520" rx="44" fill="url(#bg${index})" />
+          <circle cx="684" cy="86" r="74" fill="${accent}" opacity="0.18" />
+          <circle cx="146" cy="436" r="98" fill="#ffffff" opacity="0.06" />
+          <rect x="42" y="42" width="716" height="436" rx="30" fill="rgba(7,10,20,0.18)" stroke="rgba(255,255,255,0.12)" />
+          <rect x="70" y="72" width="318" height="300" rx="26" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.12)" />
+          <rect x="98" y="110" width="120" height="28" rx="14" fill="${accent}" opacity="0.9" />
+          <text x="114" y="129" fill="#f8fafc" font-size="15" font-family="Poppins, Arial, sans-serif" font-weight="700">${item.tag}</text>
+          <text x="98" y="190" fill="#ffffff" font-size="34" font-family="Poppins, Arial, sans-serif" font-weight="700">${item.imageLabel}</text>
+          <text x="98" y="228" fill="rgba(255,255,255,0.78)" font-size="18" font-family="Poppins, Arial, sans-serif">Expense Tracker visual concept</text>
+          <rect x="98" y="276" width="222" height="12" rx="6" fill="rgba(255,255,255,0.28)" />
+          <rect x="98" y="304" width="186" height="12" rx="6" fill="rgba(255,255,255,0.18)" />
+          <rect x="98" y="332" width="148" height="12" rx="6" fill="rgba(255,255,255,0.14)" />
+          <rect x="420" y="108" width="288" height="132" rx="24" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.12)" />
+          <text x="448" y="146" fill="#ffffff" font-size="20" font-family="Poppins, Arial, sans-serif" font-weight="600">Insights panel</text>
+          ${dots}
+          <rect x="420" y="264" width="288" height="132" rx="24" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.12)" />
+          <text x="448" y="304" fill="#ffffff" font-size="20" font-family="Poppins, Arial, sans-serif" font-weight="600">Spending rhythm</text>
+          <line x1="448" y1="360" x2="688" y2="360" stroke="rgba(255,255,255,0.14)" stroke-width="2" />
+          ${bars}
+        </svg>
+      `;
+
+      return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
+    }
+
+    function renderGallery() {
+      const galleryGrid = document.getElementById('landing-gallery-grid');
+      if (!galleryGrid) return;
+
+      galleryGrid.innerHTML = galleryItems.map((item, index) => `
+        <article class="gallery-card glass-card" style="animation-delay:${index * 40}ms">
+          <div class="gallery-card-image-wrap">
+            <img
+              class="gallery-card-image"
+              src="${buildGalleryImage(item, index)}"
+              alt="${escapeMarkup(item.title)} visual for online expense tracking"
+              loading="lazy"
+            >
+          </div>
+          <div class="gallery-card-body">
+            <span class="gallery-card-tag">${escapeMarkup(item.tag)}</span>
+            <h3>${escapeMarkup(item.title)}</h3>
+            <p>${escapeMarkup(item.description)}</p>
+          </div>
+        </article>
+      `).join('');
     }
 
     function finishOnboarding() {
