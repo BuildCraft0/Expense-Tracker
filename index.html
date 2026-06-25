@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Expense Tracker Pro - Welcome</title>
-  
+
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <!-- Stylesheets -->
@@ -18,101 +18,331 @@
 <body class="animate-fade">
 
   <div class="lock-screen-container">
-    
-    <!-- Lock Card -->
-    <div class="glass-card lock-card animate-scale" id="lock-card" style="display:none;">
-      <div class="lock-logo">
-        <i class="fas fa-shield-halved"></i>
-      </div>
-      <h2 style="font-weight:700; margin-bottom:8px;">App Locked</h2>
-      <p style="color:var(--text-secondary); font-size:0.9rem;" id="pin-prompt-msg">Enter PIN to access your finance dashboard</p>
-      
-      <!-- Dots -->
-      <div class="pin-dots" id="pin-dots">
-        <div class="pin-dot"></div>
-        <div class="pin-dot"></div>
-        <div class="pin-dot"></div>
-        <div class="pin-dot"></div>
-      </div>
-      
-      <!-- Keypad -->
-      <div class="keypad-grid">
-        <button class="keypad-btn" onclick="pressKey('1')">1</button>
-        <button class="keypad-btn" onclick="pressKey('2')">2</button>
-        <button class="keypad-btn" onclick="pressKey('3')">3</button>
-        
-        <button class="keypad-btn" onclick="pressKey('4')">4</button>
-        <button class="keypad-btn" onclick="pressKey('5')">5</button>
-        <button class="keypad-btn" onclick="pressKey('6')">6</button>
-        
-        <button class="keypad-btn" onclick="pressKey('7')">7</button>
-        <button class="keypad-btn" onclick="pressKey('8')">8</button>
-        <button class="keypad-btn" onclick="pressKey('9')">9</button>
-        
-        <button class="keypad-btn" onclick="clearPIN()"><i class="fas fa-redo-alt" style="font-size:1.1rem;"></i></button>
-        <button class="keypad-btn" onclick="pressKey('0')">0</button>
-        <button class="keypad-btn" onclick="backspacePIN()"><i class="fas fa-backspace" style="font-size:1.1rem;"></i></button>
+    <div class="welcome-shell">
+      <header class="glass-header welcome-topbar animate-slide">
+        <div class="welcome-brand">
+          <div class="welcome-brand-mark">
+            <i class="fas fa-wallet"></i>
+          </div>
+          <div class="welcome-brand-copy">
+            <span>Expense Tracker Pro</span>
+            <p>Personal finance workspace for focused budgeting, reporting, and secure daily tracking.</p>
+          </div>
+        </div>
+
+        <div class="welcome-status">
+          <span class="welcome-mini-badge"><i class="fas fa-shield-halved"></i> Secure access</span>
+          <span class="welcome-mini-badge"><i class="fas fa-chart-line"></i> Visual analytics</span>
+          <span class="welcome-mini-badge"><i class="fas fa-wallet"></i> Multi-wallet ready</span>
+        </div>
+      </header>
+
+      <div class="welcome-grid">
+        <section class="welcome-hero animate-slide">
+          <div class="welcome-hero-copy">
+            <p class="welcome-eyebrow">PRIVATE FINANCE COCKPIT</p>
+            <h1 class="welcome-title">
+              Move from scattered expense notes
+              <span>to a sharp, premium finance dashboard.</span>
+            </h1>
+            <p class="welcome-copy">
+              Budget planning, category intelligence, and wallet-level control come together in a glassmorphic interface that feels more like a product than a template.
+            </p>
+          </div>
+
+          <div class="welcome-pill-row">
+            <div class="welcome-pill"><i class="fas fa-lock"></i> Session-based protection</div>
+            <div class="welcome-pill"><i class="fas fa-chart-pie"></i> Reports that explain spending</div>
+            <div class="welcome-pill"><i class="fas fa-globe"></i> Multi-currency workflow</div>
+          </div>
+
+          <div class="welcome-actions">
+            <button class="btn btn-primary" type="button" onclick="scrollToAccessCard()">
+              Open Secure Access <i class="fas fa-arrow-right"></i>
+            </button>
+            <button class="btn" type="button" onclick="advanceSlide()">
+              Preview Product Story <i class="fas fa-chart-line"></i>
+            </button>
+          </div>
+
+          <div class="welcome-feature-grid">
+            <article class="welcome-feature-card">
+              <div class="welcome-feature-icon"><i class="fas fa-wallet"></i></div>
+              <h3>One command center</h3>
+              <p>Track cash, bank, card, and UPI balances together with faster context switching between wallets and categories.</p>
+            </article>
+
+            <article class="welcome-feature-card">
+              <div class="welcome-feature-icon"><i class="fas fa-chart-line"></i></div>
+              <h3>Readable financial signals</h3>
+              <p>See trend movement, savings pressure, and top spending categories without digging through raw transaction lists.</p>
+            </article>
+
+            <article class="welcome-feature-card">
+              <div class="welcome-feature-icon"><i class="fas fa-shield-halved"></i></div>
+              <h3>Private by default</h3>
+              <p>Keep your data in-browser with lock-screen protection and a setup flow that feels intentional from the first click.</p>
+            </article>
+          </div>
+
+          <div class="glass-card preview-stage">
+            <div class="preview-board">
+              <div class="preview-balance-card">
+                <span class="preview-kicker">Today at a glance</span>
+                <h2 class="preview-amount">Rs 1,48,320</h2>
+                <p class="preview-caption">Available across cash, cards, bank accounts, and digital wallets.</p>
+
+                <div class="preview-stats-grid">
+                  <div class="preview-stat">
+                    <span>Income</span>
+                    <strong>+18%</strong>
+                  </div>
+                  <div class="preview-stat danger">
+                    <span>Expense Burn</span>
+                    <strong>-6%</strong>
+                  </div>
+                  <div class="preview-stat success">
+                    <span>Savings Goal</span>
+                    <strong>82%</strong>
+                  </div>
+                </div>
+              </div>
+
+              <div class="preview-side-panel">
+                <div class="preview-chart-shell">
+                  <div class="preview-chart-head">
+                    <span>Weekly cashflow pulse</span>
+                    <strong>Stable</strong>
+                  </div>
+                  <div class="preview-bars" aria-hidden="true">
+                    <span class="preview-bar success" style="height:58%;"></span>
+                    <span class="preview-bar warning" style="height:78%;"></span>
+                    <span class="preview-bar info" style="height:48%;"></span>
+                    <span class="preview-bar accent" style="height:88%;"></span>
+                    <span class="preview-bar danger" style="height:42%;"></span>
+                    <span class="preview-bar success" style="height:70%;"></span>
+                  </div>
+                </div>
+
+                <div class="preview-flow">
+                  <div class="preview-flow-item">
+                    <div class="preview-flow-dot success"></div>
+                    <div>
+                      <strong>Budget alert caught early</strong>
+                      <span>Dining out is 74% used before month-end.</span>
+                    </div>
+                  </div>
+                  <div class="preview-flow-item">
+                    <div class="preview-flow-dot info"></div>
+                    <div>
+                      <strong>Income spike tagged</strong>
+                      <span>Freelance wallet growth updated automatically.</span>
+                    </div>
+                  </div>
+                  <div class="preview-flow-item">
+                    <div class="preview-flow-dot accent"></div>
+                    <div>
+                      <strong>Report ready to export</strong>
+                      <span>Share trends, backup JSON, or print summary views.</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="welcome-panel animate-scale" id="access-panel">
+          <div class="panel-glow panel-glow-a"></div>
+          <div class="panel-glow panel-glow-b"></div>
+
+          <div class="panel-stack">
+            <div class="glass-card panel-summary">
+              <div class="panel-summary-head">
+                <span class="badge badge-info">Focused Setup</span>
+                <h3>Everything important is one step away.</h3>
+                <p>Unlock, take the quick product tour, and enter a workspace built for repeat daily use.</p>
+              </div>
+
+              <div class="panel-summary-grid">
+                <div class="panel-summary-item">
+                  <span>01</span>
+                  <strong>Unlock securely</strong>
+                </div>
+                <div class="panel-summary-item">
+                  <span>02</span>
+                  <strong>Preview insights</strong>
+                </div>
+                <div class="panel-summary-item">
+                  <span>03</span>
+                  <strong>Start tracking</strong>
+                </div>
+              </div>
+            </div>
+
+            <div class="glass-card lock-card animate-scale" id="lock-card" style="display:none;">
+              <div class="lock-card-header">
+                <div class="lock-badge-row">
+                  <span class="badge badge-warning">Protected Entry</span>
+                  <span class="badge badge-info">4-digit PIN</span>
+                </div>
+
+                <div class="lock-logo">
+                  <i class="fas fa-shield-halved"></i>
+                </div>
+
+                <div>
+                  <h2>Welcome back</h2>
+                  <p class="lock-intro" id="pin-prompt-msg">Enter your PIN to continue into your finance dashboard.</p>
+                </div>
+              </div>
+
+              <div class="lock-tips">
+                <div class="lock-tip">
+                  <strong>Private session</strong>
+                  <span>Quick access with a clean handoff to your dashboard.</span>
+                </div>
+                <div class="lock-tip">
+                  <strong>Fast re-entry</strong>
+                  <span>Built for repeat daily check-ins without friction.</span>
+                </div>
+                <div class="lock-tip">
+                  <strong>Confident control</strong>
+                  <span>Your money view stays protected before the app opens.</span>
+                </div>
+              </div>
+
+              <div class="pin-dots" id="pin-dots" aria-live="polite">
+                <div class="pin-dot"></div>
+                <div class="pin-dot"></div>
+                <div class="pin-dot"></div>
+                <div class="pin-dot"></div>
+              </div>
+
+              <div class="keypad-grid">
+                <button class="keypad-btn" type="button" onclick="pressKey('1')">1</button>
+                <button class="keypad-btn" type="button" onclick="pressKey('2')">2</button>
+                <button class="keypad-btn" type="button" onclick="pressKey('3')">3</button>
+
+                <button class="keypad-btn" type="button" onclick="pressKey('4')">4</button>
+                <button class="keypad-btn" type="button" onclick="pressKey('5')">5</button>
+                <button class="keypad-btn" type="button" onclick="pressKey('6')">6</button>
+
+                <button class="keypad-btn" type="button" onclick="pressKey('7')">7</button>
+                <button class="keypad-btn" type="button" onclick="pressKey('8')">8</button>
+                <button class="keypad-btn" type="button" onclick="pressKey('9')">9</button>
+
+                <button class="keypad-btn" type="button" onclick="clearPIN()" aria-label="Reset PIN">
+                  <i class="fas fa-redo-alt" style="font-size:1.1rem;"></i>
+                </button>
+                <button class="keypad-btn" type="button" onclick="pressKey('0')">0</button>
+                <button class="keypad-btn" type="button" onclick="backspacePIN()" aria-label="Delete one digit">
+                  <i class="fas fa-backspace" style="font-size:1.1rem;"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="glass-card lock-card animate-scale" id="onboarding-card" style="display:none;">
+              <div class="lock-card-header">
+                <div class="lock-badge-row">
+                  <span class="badge badge-success">Guided Onboarding</span>
+                  <span class="badge badge-info">3 quick highlights</span>
+                </div>
+
+                <div class="lock-logo">
+                  <i class="fas fa-wallet"></i>
+                </div>
+              </div>
+
+              <div class="onboarding-slider">
+                <div class="onboarding-slide active" id="slide-1">
+                  <h2>Build a cleaner money routine</h2>
+                  <p class="lock-intro">
+                    Step into a dashboard that turns daily income, expenses, and savings into a system you can actually review without friction.
+                  </p>
+
+                  <div class="onboarding-stat-grid">
+                    <div class="onboarding-stat">
+                      <strong>Offline-friendly flow</strong>
+                      <span>Track and review your data in a lightweight browser workspace.</span>
+                    </div>
+                    <div class="onboarding-stat">
+                      <strong>Secure first impression</strong>
+                      <span>PIN unlock keeps entry intentional before any finance data appears.</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="onboarding-slide" id="slide-2">
+                  <h2>Read trends before they become problems</h2>
+                  <p class="lock-intro">
+                    Category patterns, savings growth, and report exports help you catch drift early instead of reacting after the month closes.
+                  </p>
+
+                  <div class="onboarding-feature-list">
+                    <div><i class="fas fa-chart-line"></i><span>Monthly and weekly performance views</span></div>
+                    <div><i class="fas fa-chart-pie"></i><span>Category-heavy spending visibility</span></div>
+                    <div><i class="fas fa-file-code"></i><span>Backup and reporting options for safer ownership</span></div>
+                  </div>
+                </div>
+
+                <div class="onboarding-slide" id="slide-3">
+                  <h2>Adapt the workspace to your real life</h2>
+                  <p class="lock-intro">
+                    Cash, bank, credit, and digital wallets can live in one place, with custom categories, budgeting controls, and localized workflow support.
+                  </p>
+
+                  <div class="onboarding-stat-grid">
+                    <div class="onboarding-stat">
+                      <strong>Multi-wallet setup</strong>
+                      <span>Separate spending sources while keeping one top-level balance view.</span>
+                    </div>
+                    <div class="onboarding-stat">
+                      <strong>Flexible categories</strong>
+                      <span>Shape the tracker around your habits instead of forcing generic labels.</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="pin-dots slide-dots" id="slide-dots">
+                <div class="pin-dot filled" onclick="showSlide(1)"></div>
+                <div class="pin-dot" onclick="showSlide(2)"></div>
+                <div class="pin-dot" onclick="showSlide(3)"></div>
+              </div>
+
+              <div class="onboarding-card-actions">
+                <button class="btn" type="button" onclick="advanceSlide()">
+                  Next Insight <i class="fas fa-arrow-right"></i>
+                </button>
+                <button class="btn btn-primary" type="button" onclick="finishOnboarding()">
+                  Launch Dashboard <i class="fas fa-arrow-right"></i>
+                </button>
+              </div>
+            </div>
+
+            <p class="panel-footnote">
+              Built for calm daily check-ins, not spreadsheet fatigue.
+            </p>
+          </div>
+        </section>
       </div>
     </div>
-
-    <!-- Onboarding Card -->
-    <div class="glass-card lock-card animate-scale" id="onboarding-card" style="display:none;">
-      <div class="lock-logo">
-        <i class="fas fa-wallet"></i>
-      </div>
-      
-      <!-- Slides -->
-      <div class="onboarding-slider">
-        <div class="onboarding-slide active" id="slide-1">
-          <h2 style="font-weight:700; margin-bottom:12px;">Expense Tracker Pro</h2>
-          <p style="color:var(--text-secondary); font-size:0.95rem; line-height:1.6; margin-bottom:16px;">
-            A professional glassmorphic dashboard to track incomes, budgets, and savings goals entirely offline.
-          </p>
-        </div>
-        
-        <div class="onboarding-slide" id="slide-2">
-          <h2 style="font-weight:700; margin-bottom:12px;">Visual Insights</h2>
-          <p style="color:var(--text-secondary); font-size:0.95rem; line-height:1.6; margin-bottom:16px;">
-            Analyze categories and monthly savings charts using dynamic, beautiful Chart.js visualizations.
-          </p>
-        </div>
-
-        <div class="onboarding-slide" id="slide-3">
-          <h2 style="font-weight:700; margin-bottom:12px;">Wallet & Currency</h2>
-          <p style="color:var(--text-secondary); font-size:0.95rem; line-height:1.6; margin-bottom:16px;">
-            Manage cash, banks, credit cards, or digital wallets in multiple currencies with Hindi support.
-          </p>
-        </div>
-      </div>
-
-      <!-- Slide Nav Dots -->
-      <div class="pin-dots" style="margin:20px 0 30px 0;" id="slide-dots">
-        <div class="pin-dot filled" onclick="showSlide(1)"></div>
-        <div class="pin-dot" onclick="showSlide(2)"></div>
-        <div class="pin-dot" onclick="showSlide(3)"></div>
-      </div>
-      
-      <button class="btn btn-primary" style="width:100%;" onclick="finishOnboarding()">
-        Get Started <i class="fas fa-arrow-right"></i>
-      </button>
-    </div>
-
   </div>
 
   <!-- Load Scripts -->
   <script src="js/storage.js"></script>
   <script src="js/theme.js"></script>
-  
+
   <script>
     let enteredPIN = '';
     let currentSlide = 1;
-    
+
     document.addEventListener('DOMContentLoaded', () => {
       const state = window.StorageModule.loadState();
-      
-      // Auto-unlock if security lock is disabled
+      showSlide(1);
+
       if (!state.settings.pinLockEnabled) {
-        // Check if onboarding has been completed
         const onboardingCompleted = localStorage.getItem('EXPENSE_TRACKER_ONBOARDING_DONE') === 'true';
         if (onboardingCompleted) {
           sessionStorage.setItem('EXPENSE_TRACKER_PRO_UNLOCKED', 'true');
@@ -125,7 +355,6 @@
       }
     });
 
-    // Keypad Logic
     function pressKey(num) {
       if (enteredPIN.length < 4) {
         enteredPIN += num;
@@ -160,38 +389,34 @@
     function verifyPIN() {
       const state = window.StorageModule.loadState();
       const correctPIN = state.settings.pinCode || '1234';
-      
+
       if (enteredPIN === correctPIN) {
         sessionStorage.setItem('EXPENSE_TRACKER_PRO_UNLOCKED', 'true');
-        // Check if onboarding is done
         const onboardingCompleted = localStorage.getItem('EXPENSE_TRACKER_ONBOARDING_DONE') === 'true';
         if (onboardingCompleted) {
           window.location.href = 'dashboard.html';
         } else {
-          document.getElementById('lock-card').classList.add('animate-fade');
           document.getElementById('lock-card').style.display = 'none';
           document.getElementById('onboarding-card').style.display = 'block';
         }
       } else {
-        // Wrong PIN effect
         const card = document.getElementById('lock-card');
-        card.style.animation = 'none';
-        void card.offsetWidth; // trigger reflow
-        card.style.animation = 'scaleIn 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+        card.classList.remove('card-shake');
+        void card.offsetWidth;
+        card.classList.add('card-shake');
         document.getElementById('pin-prompt-msg').textContent = 'Incorrect PIN! Try again.';
         document.getElementById('pin-prompt-msg').style.color = 'var(--color-danger)';
         clearPIN();
       }
     }
 
-    // Onboarding slide switcher
     function showSlide(num) {
       currentSlide = num;
       document.querySelectorAll('.onboarding-slide').forEach((slide, idx) => {
         slide.classList.remove('active');
         if (idx + 1 === num) slide.classList.add('active');
       });
-      
+
       document.querySelectorAll('#slide-dots .pin-dot').forEach((dot, idx) => {
         if (idx + 1 === num) {
           dot.classList.add('filled');
@@ -201,17 +426,42 @@
       });
     }
 
+    function advanceSlide() {
+      currentSlide = (currentSlide % 3) + 1;
+      showSlide(currentSlide);
+    }
+
+    function scrollToAccessCard() {
+      document.getElementById('access-panel').scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+
     function finishOnboarding() {
       localStorage.setItem('EXPENSE_TRACKER_ONBOARDING_DONE', 'true');
       sessionStorage.setItem('EXPENSE_TRACKER_PRO_UNLOCKED', 'true');
       window.location.href = 'dashboard.html';
     }
 
-    // Simple slide auto-scroll
+    document.addEventListener('keydown', (event) => {
+      const lockCardVisible = document.getElementById('lock-card').style.display === 'block';
+      if (!lockCardVisible) return;
+
+      if (/^[0-9]$/.test(event.key)) {
+        pressKey(event.key);
+      } else if (event.key === 'Backspace') {
+        backspacePIN();
+      } else if (event.key === 'Delete') {
+        clearPIN();
+      } else if (event.key === 'Enter' && enteredPIN.length === 4) {
+        verifyPIN();
+      }
+    });
+
     setInterval(() => {
       if (document.getElementById('onboarding-card').style.display === 'block') {
-        currentSlide = (currentSlide % 3) + 1;
-        showSlide(currentSlide);
+        advanceSlide();
       }
     }, 5000);
   </script>
