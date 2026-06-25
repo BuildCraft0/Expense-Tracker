@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Expense Tracker Pro - Welcome</title>
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0f0c1b">
+</head>
+<body class="animate-fade">
+
+  <div class="lock-screen-container">
+    
+    <!-- Lock Card -->
+    <div class="glass-card lock-card animate-scale" id="lock-card" style="display:none;">
+      <div class="lock-logo">
+        <i class="fas fa-shield-halved"></i>
+      </div>
+      <h2 style="font-weight:700; margin-bottom:8px;">App Locked</h2>
+      <p style="color:var(--text-secondary); font-size:0.9rem;" id="pin-prompt-msg">Enter PIN to access your finance dashboard</p>
+      
+      <!-- Dots -->
+      <div class="pin-dots" id="pin-dots">
+        <div class="pin-dot"></div>
+        <div class="pin-dot"></div>
+        <div class="pin-dot"></div>
+        <div class="pin-dot"></div>
+      </div>
+      
+      <!-- Keypad -->
+      <div class="keypad-grid">
+        <button class="keypad-btn" onclick="pressKey('1')">1</button>
+        <button class="keypad-btn" onclick="pressKey('2')">2</button>
+        <button class="keypad-btn" onclick="pressKey('3')">3</button>
+        
+        <button class="keypad-btn" onclick="pressKey('4')">4</button>
+        <button class="keypad-btn" onclick="pressKey('5')">5</button>
+        <button class="keypad-btn" onclick="pressKey('6')">6</button>
+        
+        <button class="keypad-btn" onclick="pressKey('7')">7</button>
+        <button class="keypad-btn" onclick="pressKey('8')">8</button>
+        <button class="keypad-btn" onclick="pressKey('9')">9</button>
+        
+        <button class="keypad-btn" onclick="clearPIN()"><i class="fas fa-redo-alt" style="font-size:1.1rem;"></i></button>
+        <button class="keypad-btn" onclick="pressKey('0')">0</button>
+        <button class="keypad-btn" onclick="backspacePIN()"><i class="fas fa-backspace" style="font-size:1.1rem;"></i></button>
+      </div>
+    </div>
+
+    <!-- Onboarding Card -->
+    <div class="glass-card lock-card animate-scale" id="onboarding-card" style="display:none;">
+      <div class="lock-logo">
+        <i class="fas fa-wallet"></i>
+      </div>
+      
+      <!-- Slides -->
+      <div class="onboarding-slider">
+        <div class="onboarding-slide active" id="slide-1">
+          <h2 style="font-weight:700; margin-bottom:12px;">Expense Tracker Pro</h2>
+          <p style="color:var(--text-secondary); font-size:0.95rem; line-height:1.6; margin-bottom:16px;">
+            A professional glassmorphic dashboard to track incomes, budgets, and savings goals entirely offline.
+          </p>
+        </div>
+        
+        <div class="onboarding-slide" id="slide-2">
+          <h2 style="font-weight:700; margin-bottom:12px;">Visual Insights</h2>
+          <p style="color:var(--text-secondary); font-size:0.95rem; line-height:1.6; margin-bottom:16px;">
+            Analyze categories and monthly savings charts using dynamic, beautiful Chart.js visualizations.
+          </p>
+        </div>
+
+        <div class="onboarding-slide" id="slide-3">
+          <h2 style="font-weight:700; margin-bottom:12px;">Wallet & Currency</h2>
+          <p style="color:var(--text-secondary); font-size:0.95rem; line-height:1.6; margin-bottom:16px;">
+            Manage cash, banks, credit cards, or digital wallets in multiple currencies with Hindi support.
+          </p>
+        </div>
+      </div>
+
+      <!-- Slide Nav Dots -->
+      <div class="pin-dots" style="margin:20px 0 30px 0;" id="slide-dots">
+        <div class="pin-dot filled" onclick="showSlide(1)"></div>
+        <div class="pin-dot" onclick="showSlide(2)"></div>
+        <div class="pin-dot" onclick="showSlide(3)"></div>
+      </div>
+      
+      <button class="btn btn-primary" style="width:100%;" onclick="finishOnboarding()">
+        Get Started <i class="fas fa-arrow-right"></i>
+      </button>
+    </div>
+
+  </div>
+
+  <!-- Load Scripts -->
+  <script src="js/storage.js"></script>
+  <script src="js/theme.js"></script>
+  
+  <script>
+    let enteredPIN = '';
+    let currentSlide = 1;
+    
+    document.addEventListener('DOMContentLoaded', () => {
+      const state = window.StorageModule.loadState();
+      
+      // Auto-unlock if security lock is disabled
+      if (!state.settings.pinLockEnabled) {
+        // Check if onboarding has been completed
+        const onboardingCompleted = localStorage.getItem('EXPENSE_TRACKER_ONBOARDING_DONE') === 'true';
+        if (onboardingCompleted) {
+          sessionStorage.setItem('EXPENSE_TRACKER_PRO_UNLOCKED', 'true');
+          window.location.href = 'dashboard.html';
+        } else {
+          document.getElementById('onboarding-card').style.display = 'block';
+        }
+      } else {
+        document.getElementById('lock-card').style.display = 'block';
+      }
+    });
+
+    // Keypad Logic
+    function pressKey(num) {
+      if (enteredPIN.length < 4) {
+        enteredPIN += num;
+        updateDots();
+        if (enteredPIN.length === 4) {
+          setTimeout(verifyPIN, 150);
+        }
+      }
+    }
+
+    function clearPIN() {
+      enteredPIN = '';
+      updateDots();
+    }
+
+    function backspacePIN() {
+      enteredPIN = enteredPIN.slice(0, -1);
+      updateDots();
+    }
+
+    function updateDots() {
+      const dots = document.querySelectorAll('#pin-dots .pin-dot');
+      dots.forEach((dot, idx) => {
+        if (idx < enteredPIN.length) {
+          dot.classList.add('filled');
+        } else {
+          dot.classList.remove('filled');
+        }
+      });
+    }
+
+    function verifyPIN() {
+      const state = window.StorageModule.loadState();
+      const correctPIN = state.settings.pinCode || '1234';
+      
+      if (enteredPIN === correctPIN) {
+        sessionStorage.setItem('EXPENSE_TRACKER_PRO_UNLOCKED', 'true');
+        // Check if onboarding is done
+        const onboardingCompleted = localStorage.getItem('EXPENSE_TRACKER_ONBOARDING_DONE') === 'true';
+        if (onboardingCompleted) {
+          window.location.href = 'dashboard.html';
+        } else {
+          document.getElementById('lock-card').classList.add('animate-fade');
+          document.getElementById('lock-card').style.display = 'none';
+          document.getElementById('onboarding-card').style.display = 'block';
+        }
+      } else {
+        // Wrong PIN effect
+        const card = document.getElementById('lock-card');
+        card.style.animation = 'none';
+        void card.offsetWidth; // trigger reflow
+        card.style.animation = 'scaleIn 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+        document.getElementById('pin-prompt-msg').textContent = 'Incorrect PIN! Try again.';
+        document.getElementById('pin-prompt-msg').style.color = 'var(--color-danger)';
+        clearPIN();
+      }
+    }
+
+    // Onboarding slide switcher
+    function showSlide(num) {
+      currentSlide = num;
+      document.querySelectorAll('.onboarding-slide').forEach((slide, idx) => {
+        slide.classList.remove('active');
+        if (idx + 1 === num) slide.classList.add('active');
+      });
+      
+      document.querySelectorAll('#slide-dots .pin-dot').forEach((dot, idx) => {
+        if (idx + 1 === num) {
+          dot.classList.add('filled');
+        } else {
+          dot.classList.remove('filled');
+        }
+      });
+    }
+
+    function finishOnboarding() {
+      localStorage.setItem('EXPENSE_TRACKER_ONBOARDING_DONE', 'true');
+      sessionStorage.setItem('EXPENSE_TRACKER_PRO_UNLOCKED', 'true');
+      window.location.href = 'dashboard.html';
+    }
+
+    // Simple slide auto-scroll
+    setInterval(() => {
+      if (document.getElementById('onboarding-card').style.display === 'block') {
+        currentSlide = (currentSlide % 3) + 1;
+        showSlide(currentSlide);
+      }
+    }, 5000);
+  </script>
+</body>
+</html>

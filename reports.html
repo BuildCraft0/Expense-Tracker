@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Expense Tracker Pro - Reports & Analytics</title>
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- ChartJS CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages.css">
+
+  <style>
+    .reports-filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .charts-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 24px;
+    }
+    .chart-container-card {
+      min-height: 320px;
+    }
+    
+    .report-stat-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-top: 10px;
+    }
+    
+    @media (max-width: 1024px) {
+      .charts-grid {
+        grid-template-columns: 1fr;
+      }
+      .report-stat-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    @media (max-width: 640px) {
+      .report-stat-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body class="animate-fade">
+
+  <div id="app-layout">
+    
+    <!-- Filter Bar Card -->
+    <div class="glass-card">
+      <div class="reports-filter-bar">
+        <!-- Date Selection Filters -->
+        <div style="display:flex; flex-wrap:wrap; gap:12px; align-items:center;">
+          <div class="form-group" style="margin-bottom:0;">
+            <label class="form-label" style="margin-bottom:4px;">Period</label>
+            <select class="select-field" id="report-period-select" onchange="toggleCustomDates(); triggerReportsUpdate();" style="padding: 8px 12px; width:150px;">
+              <option value="month">This Month</option>
+              <option value="week">This Week</option>
+              <option value="year">This Year</option>
+              <option value="custom">Custom Range</option>
+            </select>
+          </div>
+          
+          <div class="form-group" id="report-custom-start-group" style="margin-bottom:0; display:none;">
+            <label class="form-label" style="margin-bottom:4px;">Start Date</label>
+            <input type="date" class="input-field" id="report-start-date" onchange="triggerReportsUpdate();" style="padding: 8px 12px; width:140px;">
+          </div>
+          
+          <div class="form-group" id="report-custom-end-group" style="margin-bottom:0; display:none;">
+            <label class="form-label" style="margin-bottom:4px;">End Date</label>
+            <input type="date" class="input-field" id="report-end-date" onchange="triggerReportsUpdate();" style="padding: 8px 12px; width:140px;">
+          </div>
+        </div>
+
+        <!-- Export/Print Action Buttons -->
+        <div style="display:flex; gap:10px; align-items:center;">
+          <button class="btn" onclick="exportCSV()"><i class="fas fa-file-csv" style="color:#10b981;"></i> CSV</button>
+          <button class="btn" onclick="exportJSON()"><i class="fas fa-file-code" style="color:#3b82f6;"></i> JSON</button>
+          <button class="btn btn-primary" onclick="printReport()"><i class="fas fa-print"></i> Print / PDF</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Summary Figures for current timeframe -->
+    <div class="report-stat-grid animate-slide">
+      <div class="glass-card" style="padding:16px 20px;">
+        <p style="font-size:0.75rem; color:var(--text-secondary);">Period Income</p>
+        <h3 style="font-weight:700; color:var(--color-success); margin-top:4px;" id="rep-income">$0.00</h3>
+      </div>
+      <div class="glass-card" style="padding:16px 20px;">
+        <p style="font-size:0.75rem; color:var(--text-secondary);">Period Expenses</p>
+        <h3 style="font-weight:700; color:var(--color-danger); margin-top:4px;" id="rep-expense">$0.00</h3>
+      </div>
+      <div class="glass-card" style="padding:16px 20px;">
+        <p style="font-size:0.75rem; color:var(--text-secondary);">Period Savings</p>
+        <h3 style="font-weight:700; color:var(--color-info); margin-top:4px;" id="rep-savings">$0.00</h3>
+      </div>
+      <div class="glass-card" style="padding:16px 20px;">
+        <p style="font-size:0.75rem; color:var(--text-secondary);">Savings Ratio</p>
+        <h3 style="font-weight:700; color:var(--accent-secondary); margin-top:4px;" id="rep-ratio">0%</h3>
+      </div>
+    </div>
+
+    <!-- Analytics Charts Grid -->
+    <div class="charts-grid animate-slide">
+      
+      <!-- Income vs Expense curve -->
+      <div class="glass-card chart-container-card">
+        <h3 style="font-weight:600; margin-bottom:16px;">Income vs Expense Trend</h3>
+        <div style="position:relative; height:250px;">
+          <canvas id="incomeVsExpenseCanvas"></canvas>
+        </div>
+      </div>
+
+      <!-- Category Doughnut distribution -->
+      <div class="glass-card chart-container-card">
+        <h3 style="font-weight:600; margin-bottom:16px;">Category spending Distribution</h3>
+        <div style="position:relative; height:250px;">
+          <canvas id="categoryDoughnutCanvas"></canvas>
+        </div>
+      </div>
+
+      <!-- Savings Growth Chart -->
+      <div class="glass-card chart-container-card">
+        <h3 style="font-weight:600; margin-bottom:16px;">Savings Growth History</h3>
+        <div style="position:relative; height:250px;">
+          <canvas id="savingsGrowthCanvas"></canvas>
+        </div>
+      </div>
+
+      <!-- Top Category lists chart -->
+      <div class="glass-card chart-container-card">
+        <h3 style="font-weight:600; margin-bottom:16px;">Top Category Expenditures</h3>
+        <div style="position:relative; height:250px;">
+          <canvas id="topCategoriesBarCanvas"></canvas>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Load Scripts -->
+  <script src="js/storage.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/settings.js"></script>
+  <script src="js/filter.js"></script>
+  <script src="js/search.js"></script>
+  <script src="js/chart.js"></script>
+  <script src="js/export.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/report.js"></script>
+</body>
+</html>

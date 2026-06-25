@@ -1,0 +1,171 @@
+/* PIN Lock / Onboarding Page (index.html) */
+.lock-screen-container {
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.lock-card {
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+  padding: 40px 30px;
+}
+
+.lock-logo {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.pin-dots {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin: 30px 0;
+}
+
+.pin-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid var(--glass-border);
+  transition: var(--transition-smooth);
+}
+
+.pin-dot.filled {
+  background: var(--accent-primary);
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 10px var(--accent-primary);
+  transform: scale(1.2);
+}
+
+.keypad-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.keypad-btn {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  color: var(--text-primary);
+  font-size: 1.5rem;
+  font-weight: 600;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.keypad-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: scale(1.08);
+}
+
+.keypad-btn:active {
+  transform: scale(0.95);
+}
+
+/* Onboarding view slider */
+.onboarding-slider {
+  margin-bottom: 30px;
+}
+.onboarding-slide {
+  display: none;
+}
+.onboarding-slide.active {
+  display: block;
+  animation: fadeIn 0.5s ease;
+}
+
+/* Calculator Grid (Tax / Loan Calculators) */
+.calc-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .calc-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.calc-display {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  border-radius: var(--input-radius);
+  margin-top: 15px;
+  text-align: right;
+}
+
+.calc-display .label {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.calc-display .value {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--color-success);
+}
+
+/* Settings & Wallets Lists */
+.wallet-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.wallet-item-card {
+  padding: 20px;
+  border-radius: var(--card-radius);
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.02) 100%);
+  border: 1px solid var(--glass-border);
+  transition: var(--transition-smooth);
+}
+
+.wallet-item-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+.wallet-icon {
+  font-size: 1.8rem;
+  margin-bottom: 12px;
+}
+
+/* Print Styling */
+@media print {
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+  .sidebar, .mobile-nav, .btn, .quick-add-btn, .app-header {
+    display: none !important;
+  }
+  .main-wrapper {
+    margin-left: 0 !important;
+    padding: 0 !important;
+  }
+  .glass-card {
+    background: none !important;
+    border: 1px solid #ddd !important;
+    box-shadow: none !important;
+    color: #000 !important;
+    page-break-inside: avoid;
+  }
+}

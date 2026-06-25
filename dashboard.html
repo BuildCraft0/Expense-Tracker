@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Expense Tracker Pro - Dashboard</title>
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- ChartJS CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages.css">
+  
+  <style>
+    /* Dashboard specific grid system */
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 24px;
+    }
+    .stats-card-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    
+    .stats-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--card-radius);
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      box-shadow: var(--glass-shadow);
+      transition: var(--transition-smooth);
+    }
+    .stats-card:hover {
+      transform: translateY(-4px);
+    }
+    .stats-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      color: #fff;
+    }
+    
+    .tx-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 18px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--button-radius);
+      margin-bottom: 10px;
+      transition: var(--transition-smooth);
+    }
+    .tx-item:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(255,255,255,0.15);
+    }
+    
+    .action-icon-btn {
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      font-size: 1rem;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+      padding: 4px;
+    }
+    .action-icon-btn:hover {
+      color: var(--text-primary);
+    }
+    
+    .quick-add-btn-floating {
+      position: fixed;
+      bottom: 100px;
+      right: 30px;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      box-shadow: 0 8px 25px rgba(139, 92, 246, 0.5);
+      border: none;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+      z-index: 99;
+    }
+    .quick-add-btn-floating:hover {
+      transform: scale(1.08) rotate(90deg);
+    }
+    
+    @media (max-width: 1024px) {
+      .dashboard-grid {
+        grid-template-columns: 1fr;
+      }
+      .stats-card-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .quick-add-btn-floating {
+        bottom: 100px;
+        right: 20px;
+      }
+    }
+    
+    @media (max-width: 640px) {
+      .stats-card-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body class="animate-fade">
+
+  <!-- Dynamic Page Layout wrapper -->
+  <div id="app-layout">
+    
+    <!-- Top summary Row -->
+    <div class="stats-card-grid animate-fade">
+      
+      <!-- Balance Card -->
+      <div class="stats-card">
+        <div class="stats-icon" style="background: linear-gradient(135deg, #8b5cf6, #c084fc);">
+          <i class="fas fa-wallet"></i>
+        </div>
+        <div>
+          <p style="font-size: 0.8rem; color: var(--text-secondary);" data-translate="total_balance">Total Balance</p>
+          <h2 style="font-weight: 700; margin-top:2px;" id="val-total-balance">$0.00</h2>
+        </div>
+      </div>
+      
+      <!-- Income Card -->
+      <div class="stats-card">
+        <div class="stats-icon" style="background: linear-gradient(135deg, #10b981, #34d399);">
+          <i class="fas fa-arrow-trend-up"></i>
+        </div>
+        <div>
+          <p style="font-size: 0.8rem; color: var(--text-secondary);" data-translate="total_income">Total Income</p>
+          <h2 style="font-weight: 700; color: var(--color-success); margin-top:2px;" id="val-total-income">$0.00</h2>
+        </div>
+      </div>
+      
+      <!-- Expense Card -->
+      <div class="stats-card">
+        <div class="stats-icon" style="background: linear-gradient(135deg, #ef4444, #f87171);">
+          <i class="fas fa-arrow-trend-down"></i>
+        </div>
+        <div>
+          <p style="font-size: 0.8rem; color: var(--text-secondary);" data-translate="total_expenses">Total Expenses</p>
+          <h2 style="font-weight: 700; color: var(--color-danger); margin-top:2px;" id="val-total-expense">$0.00</h2>
+        </div>
+      </div>
+
+      <!-- Savings Card -->
+      <div class="stats-card">
+        <div class="stats-icon" style="background: linear-gradient(135deg, #3b82f6, #60a5fa);">
+          <i class="fas fa-piggy-bank"></i>
+        </div>
+        <div>
+          <p style="font-size: 0.8rem; color: var(--text-secondary);" data-translate="total_savings">Total Savings</p>
+          <h2 style="font-weight: 700; color: var(--color-info); margin-top:2px;" id="val-total-savings">$0.00</h2>
+        </div>
+      </div>
+      
+    </div>
+
+    <!-- Quick Undo Alert banner -->
+    <div id="undo-alert-banner" class="glass-card animate-slide" style="display:none; padding:12px 20px; align-items:center; justify-content:space-between; border-color:var(--color-warning); background:rgba(245,158,11,0.05);">
+      <div style="display:flex; align-items:center; gap:10px;">
+        <i class="fas fa-trash-arrow-up" style="color:var(--color-warning); font-size:1.2rem;"></i>
+        <span style="font-size:0.9rem;" id="undo-alert-text">Transaction deleted successfully.</span>
+      </div>
+      <button class="btn btn-outline" style="padding: 6px 12px; font-size: 0.8rem; border-color:var(--color-warning); color:var(--color-warning);" onclick="triggerUndo()">
+        <i class="fas fa-undo"></i> Undo
+      </button>
+    </div>
+
+    <!-- Main Grid Content -->
+    <div class="dashboard-grid animate-slide" style="margin-top: 24px;">
+      
+      <!-- Left Column: Transactions & Filters -->
+      <div style="display:flex; flex-direction:column; gap:24px;">
+        
+        <!-- Budget Progress Card -->
+        <div class="glass-card">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <div>
+              <h3 style="font-weight:600;" data-translate="monthly_budget_progress">Monthly Budget Progress</h3>
+              <p style="font-size:0.8rem; color:var(--text-secondary); margin-top:2px;"><span data-translate="budget_remaining">Budget Remaining</span>: <span id="budget-remaining-value">$0.00</span></p>
+            </div>
+            <div id="budget-percentage-badge" class="badge badge-info">0%</div>
+          </div>
+          <div class="progress-bar-container">
+            <div id="budget-progress-fill" class="progress-bar-fill"></div>
+          </div>
+        </div>
+
+        <!-- Transactions Section -->
+        <div class="glass-card" style="display:flex; flex-direction:column; gap:20px;">
+          
+          <!-- Filters & Header -->
+          <div style="display:flex; flex-direction:column; gap:12px;">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <h3 style="font-weight:600;" data-translate="recent_transactions">Recent Transactions</h3>
+            </div>
+            
+            <!-- Filters form -->
+            <div style="display:grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap:10px;">
+              <input type="text" class="input-field" id="filter-search" placeholder="Search description..." style="padding: 8px 12px; font-size:0.85rem;" oninput="applyFilters()">
+              
+              <select class="select-field" id="filter-type" style="padding: 8px 12px; font-size:0.85rem;" onchange="applyFilters()">
+                <option value="all" data-translate="filter_all">All Types</option>
+                <option value="income" data-translate="filter_income">Income</option>
+                <option value="expense" data-translate="filter_expense">Expense</option>
+                <option value="favorite">Favorites</option>
+              </select>
+
+              <select class="select-field" id="filter-date-scope" style="padding: 8px 12px; font-size:0.85rem;" onchange="applyFilters()">
+                <option value="all">All Dates</option>
+                <option value="today">Today</option>
+                <option value="week">This Week</option>
+                <option value="month">This Month</option>
+                <option value="year">This Year</option>
+              </select>
+
+              <select class="select-field" id="filter-sort" style="padding: 8px 12px; font-size:0.85rem;" onchange="applyFilters()">
+                <option value="date_desc" data-translate="sort_date_desc">Newest First</option>
+                <option value="date_asc" data-translate="sort_date_asc">Oldest First</option>
+                <option value="amount_desc" data-translate="sort_amount_desc">Highest Amount</option>
+                <option value="amount_asc" data-translate="sort_amount_asc">Lowest Amount</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Transaction List wrapper -->
+          <div id="transactions-list-container" style="max-height: 480px; overflow-y:auto; padding-right:4px;">
+            <!-- Rendered list items -->
+          </div>
+          
+        </div>
+
+      </div>
+
+      <!-- Right Column: Quick info & Charts -->
+      <div style="display:flex; flex-direction:column; gap:24px;">
+        
+        <!-- Quick Stats Breakdown widget -->
+        <div class="glass-card" style="padding:20px;">
+          <h3 style="font-weight:600; margin-bottom:16px;">Spending Periods</h3>
+          <div style="display:flex; flex-direction:column; gap:12px;">
+            <div style="display:flex; justify-content:space-between;">
+              <span style="font-size:0.85rem; color:var(--text-secondary);" data-translate="spending_today">Today's Spending</span>
+              <span style="font-weight:600;" id="period-today">$0.00</span>
+            </div>
+            <div style="display:flex; justify-content:space-between;">
+              <span style="font-size:0.85rem; color:var(--text-secondary);" data-translate="spending_week">This Week Spending</span>
+              <span style="font-weight:600;" id="period-week">$0.00</span>
+            </div>
+            <div style="display:flex; justify-content:space-between;">
+              <span style="font-size:0.85rem; color:var(--text-secondary);" data-translate="spending_month">This Month Spending</span>
+              <span style="font-weight:600;" id="period-month">$0.00</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Doughnut spending widget -->
+        <div class="glass-card">
+          <h3 style="font-weight:600; margin-bottom:16px;" data-translate="top_categories">Top Categories</h3>
+          <div style="position:relative; height: 180px;">
+            <canvas id="categoryDoughnutCanvas"></canvas>
+          </div>
+        </div>
+
+        <!-- Wallets brief card -->
+        <div class="glass-card">
+          <h3 style="font-weight:600; margin-bottom:16px;" data-translate="wallets_title">Your Wallets</h3>
+          <div style="display:flex; flex-direction:column; gap:10px;" id="dashboard-wallets-list">
+            <!-- Wallets inject -->
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Floating Add button -->
+    <button class="quick-add-btn-floating" onclick="openAddTransactionModal()">
+      <i class="fas fa-plus"></i>
+    </button>
+
+    <!-- Add/Edit Transaction Modal -->
+    <div class="modal-overlay" id="tx-modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 id="tx-modal-title" data-translate="quick_add">Add Transaction</h3>
+          <button class="modal-close" onclick="closeTxModal()"><i class="fas fa-times"></i></button>
+        </div>
+        
+        <form id="tx-form" onsubmit="saveTxForm(event)">
+          <input type="hidden" id="tx-id">
+          
+          <div class="form-group">
+            <label class="form-label">Type</label>
+            <div style="display:flex; gap:15px;">
+              <label style="display:flex; align-items:center; gap:6px; cursor:pointer;">
+                <input type="radio" name="tx-type" value="expense" checked onchange="toggleCategorySelectOptions()"> Expense
+              </label>
+              <label style="display:flex; align-items:center; gap:6px; cursor:pointer;">
+                <input type="radio" name="tx-type" value="income" onchange="toggleCategorySelectOptions()"> Income
+              </label>
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:16px;">
+            <div class="form-group">
+              <label class="form-label" for="tx-amount">Amount</label>
+              <input type="number" step="any" class="input-field" id="tx-amount" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="tx-wallet">Wallet</label>
+              <select class="select-field" id="tx-wallet" required>
+                <!-- Wallets choices -->
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="tx-description">Description</label>
+            <input type="text" class="input-field" id="tx-description" required>
+          </div>
+
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:16px;">
+            <div class="form-group">
+              <label class="form-label" for="tx-category">Category</label>
+              <select class="select-field" id="tx-category">
+                <!-- Categories Choices -->
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="tx-custom-category">Or New Custom Category</label>
+              <input type="text" class="input-field" id="tx-custom-category" placeholder="Add customized...">
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:16px;">
+            <div class="form-group">
+              <label class="form-label" for="tx-date">Date</label>
+              <input type="date" class="input-field" id="tx-date" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="tx-time">Time</label>
+              <input type="time" class="input-field" id="tx-time" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="tx-tags">Tags (Comma-separated)</label>
+            <input type="text" class="input-field" id="tx-tags" placeholder="e.g. food, holiday, monthly">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="tx-notes">Transaction Notes</label>
+            <textarea class="input-field" id="tx-notes" rows="2" placeholder="Write details..."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Receipt Image</label>
+            <input type="file" id="tx-receipt" class="input-field" accept="image/*" onchange="previewReceiptFile(event)" style="padding:6px;">
+            <div id="tx-receipt-preview" style="margin-top: 10px; text-align: center; display:none;">
+              <img id="receipt-preview-img" src="" style="max-height: 120px; border-radius:10px; border:1px solid var(--glass-border);">
+              <br>
+              <button type="button" class="btn btn-outline" style="padding:4px 8px; font-size:0.75rem; margin-top:6px;" onclick="removeReceiptImage()">Remove Image</button>
+            </div>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:20px;">
+            <label style="display:flex; align-items:center; gap:6px; cursor:pointer;">
+              <input type="checkbox" id="tx-favorite"> Mark Favorite
+            </label>
+            
+            <div style="display:flex; gap:12px;">
+              <button type="button" class="btn" onclick="closeTxModal()">Cancel</button>
+              <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Load Scripts -->
+  <script src="js/storage.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/settings.js"></script>
+  <script src="js/wallet.js"></script>
+  <script src="js/budget.js"></script>
+  <script src="js/transaction.js"></script>
+  <script src="js/search.js"></script>
+  <script src="js/filter.js"></script>
+  <script src="js/chart.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>
