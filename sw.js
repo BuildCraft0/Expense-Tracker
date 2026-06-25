@@ -1,7 +1,7 @@
 // sw.js - Service Worker for PWA Cache support
 
-const CACHE_NAME = 'EXPENSE_TRACKER_PRO_V1';
-const ASSETS_TO_CACHE = [
+const CACHE_NAME = 'EXPENSE_TRACKER_V2';
+const APP_SHELL_ASSETS = [
   'index.html',
   'dashboard.html',
   'reports.html',
@@ -32,7 +32,7 @@ self.addEventListener('install', e => {
   e.waitUntil(
     caches.open(CACHE_NAME).then(cache => {
       console.log('SW: Pre-caching core app assets');
-      return cache.addAll(ASSETS_TO_CACHE);
+      return cache.addAll(APP_SHELL_ASSETS);
     }).then(() => self.skipWaiting())
   );
 });
@@ -55,17 +55,48 @@ self.addEventListener('activate', e => {
 
 // Fetch Interceptor
 self.addEventListener('fetch', e => {
-  // Respond from Cache, fallback to network
+  if (e.request.method !== 'GET') {
+    return;
+  }
+
+  const requestUrl = new URL(e.request.url);
+  const isSameOrigin = requestUrl.origin === self.location.origin;
+
+  if (isSameOrigin) {
+    e.respondWith(
+      fetch(e.request)
+        .then(networkResponse => {
+          const responseClone = networkResponse.clone();
+          caches.open(CACHE_NAME).then(cache => {
+            cache.put(e.request, responseClone);
+          });
+          return networkResponse;
+        })
+        .catch(async () => {
+          const cachedResponse = await caches.match(e.request);
+          if (cachedResponse) {
+            return cachedResponse;
+          }
+
+          const acceptHeader = e.request.headers.get('accept') || '';
+          const isHtmlRequest = e.request.mode === 'navigate' || acceptHeader.includes('text/html');
+
+          if (isHtmlRequest) {
+            return caches.match('index.html');
+          }
+        })
+    );
+    return;
+  }
+
   e.respondWith(
     caches.match(e.request).then(cachedResponse => {
       if (cachedResponse) {
         return cachedResponse;
       }
-      return fetch(e.request).catch(() => {
-        // Offline backup - if request is for HTML return index.html
-        if (e.request.headers.get('accept').includes('text/html')) {
-          return caches.match('index.html');
-        }
+
+      return fetch(e.request).then(networkResponse => {
+        return networkResponse;
       });
     })
   );
