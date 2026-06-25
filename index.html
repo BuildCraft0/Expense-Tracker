@@ -378,6 +378,8 @@
   <script>
     let enteredPIN = '';
     let currentSlide = 1;
+    const SITE_ASSET_VERSION = '2026-06-25-landing-v3';
+    const SERVICE_WORKER_URL = `sw.js?v=${SITE_ASSET_VERSION}`;
     const galleryItems = [
       {
         tag: 'Budgeting',
@@ -543,7 +545,53 @@
       'https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=1600&q=80'
     ];
 
-    document.addEventListener('DOMContentLoaded', () => {
+    async function refreshAssetCacheIfNeeded() {
+      const canManageOfflineCache = window.location.protocol === 'http:' || window.location.protocol === 'https:';
+      if (!canManageOfflineCache) return;
+
+      const previousVersion = localStorage.getItem('EXPENSE_TRACKER_ASSET_VERSION');
+      if (previousVersion === SITE_ASSET_VERSION) return;
+
+      try {
+        if ('serviceWorker' in navigator) {
+          const registrations = await navigator.serviceWorker.getRegistrations();
+          await Promise.all(registrations.map(registration => registration.unregister()));
+        }
+
+        if ('caches' in window) {
+          const cacheKeys = await caches.keys();
+          await Promise.all(
+            cacheKeys
+              .filter(cacheKey => cacheKey.startsWith('EXPENSE_TRACKER'))
+              .map(cacheKey => caches.delete(cacheKey))
+          );
+        }
+
+        localStorage.setItem('EXPENSE_TRACKER_ASSET_VERSION', SITE_ASSET_VERSION);
+
+        if (previousVersion) {
+          window.location.reload();
+        }
+      } catch (error) {
+        console.log('Asset refresh skipped:', error);
+      }
+    }
+
+    async function registerLatestServiceWorker() {
+      const canRegisterServiceWorker = 'serviceWorker' in navigator && (window.location.protocol === 'http:' || window.location.protocol === 'https:');
+      if (!canRegisterServiceWorker) return;
+
+      try {
+        await navigator.serviceWorker.register(SERVICE_WORKER_URL);
+      } catch (error) {
+        console.log('Service Worker registration failed:', error);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      await refreshAssetCacheIfNeeded();
+      await registerLatestServiceWorker();
+
       const state = window.StorageModule.loadState();
       showSlide(1);
       renderGallery();
