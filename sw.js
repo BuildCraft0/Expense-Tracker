@@ -1,12 +1,14 @@
 // sw.js - Service Worker for PWA Cache support
 
-const CACHE_NAME = 'EXPENSE_TRACKER_V2';
+const CACHE_NAME = 'EXPENSE_TRACKER_V3';
 const APP_SHELL_ASSETS = [
   'index.html',
   'dashboard.html',
   'reports.html',
   'settings.html',
   'profile.html',
+  'assets/app-icon.svg',
+  'assets/default-avatar.svg',
   'css/global.css',
   'css/components.css',
   'css/pages.css',

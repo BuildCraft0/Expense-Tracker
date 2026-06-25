@@ -134,7 +134,7 @@ function buildLayoutShell() {
   
   const state = window.StorageModule.loadState();
   const userName = state.settings.userName || 'Finance Pro';
-  const avatarUrl = state.settings.avatarUrl || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop';
+  const avatarUrl = state.settings.avatarUrl || 'assets/default-avatar.svg';
   
   // Construct Layout DOM
   const wrapper = document.createElement('div');
@@ -269,7 +269,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // PWA Service Worker Registration
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('sw.js?v=2026-06-25-landing-v3')
+      navigator.serviceWorker.register('sw.js?v=2026-06-25-images-local-v4')
         .then(reg => console.log('Service Worker Registered successfully.'))
         .catch(err => console.log('Service Worker registration failed: ', err));
     });

@@ -359,10 +359,10 @@
         <div class="gallery-head">
           <div>
             <p class="welcome-eyebrow">VISUAL LIBRARY</p>
-            <h2>20 real stock photos for an online expense tracker story.</h2>
+            <h2>20 finance visuals for an online expense tracker story.</h2>
           </div>
           <p>
-            This section adds a richer content wall to the landing page with real finance-focused stock photos, each paired with a compact description so the experience feels deeper and more editorial.
+            This section adds a richer content wall to the landing page with deployment-safe finance visuals, each paired with a compact description so the experience feels deeper and more editorial.
           </p>
         </div>
 
@@ -378,7 +378,7 @@
   <script>
     let enteredPIN = '';
     let currentSlide = 1;
-    const SITE_ASSET_VERSION = '2026-06-25-landing-v3';
+    const SITE_ASSET_VERSION = '2026-06-25-images-local-v4';
     const SERVICE_WORKER_URL = `sw.js?v=${SITE_ASSET_VERSION}`;
     const galleryItems = [
       {
@@ -521,28 +521,6 @@
         description: 'A narrative-style wrap-up image for annual patterns, biggest wins, biggest leaks, and the next money goals.',
         colors: ['#1e1b4b', '#7c3aed', '#fb7185']
       }
-    ];
-    const galleryImageUrls = [
-      'https://images.unsplash.com/photo-1633158829585-23ba8f7c8caf?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1513128034602-7814ccaddd4e?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1664575602276-acd073f104c1?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1529651737248-dad5e287768e?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1632772998001-cc9bf6f7c852?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1541140911322-98afe66ea6da?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1632406897798-e5472b4a989e?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1632406897767-2319bcedac9c?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1707779491435-000c45820db2?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1725258080098-727051947997?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1544377193-33dcf4d68fb5?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1624953901718-e24ee7200b85?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1633158829875-e5316a358c6f?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1553729459-efe14ef6055d?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1554224154-26032ffc0d07?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1709534486708-fb8f94150d0a?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=1600&q=80'
     ];
 
     async function refreshAssetCacheIfNeeded() {
@@ -763,10 +741,9 @@
           <div class="gallery-card-image-wrap">
             <img
               class="gallery-card-image"
-              src="${galleryImageUrls[index] || buildGalleryImage(item, index)}"
+              src="${buildGalleryImage(item, index)}"
               alt="${escapeMarkup(item.title)} visual for online expense tracking"
               loading="lazy"
-              referrerpolicy="no-referrer"
             >
           </div>
           <div class="gallery-card-body">
