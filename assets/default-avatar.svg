@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-labelledby="title">
+  <title id="title">Default avatar</title>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#111827" />
+      <stop offset="100%" stop-color="#2563eb" />
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22c55e" />
+      <stop offset="100%" stop-color="#14b8a6" />
+    </linearGradient>
+  </defs>
+  <rect width="256" height="256" rx="64" fill="url(#bg)" />
+  <circle cx="128" cy="92" r="40" fill="#dbeafe" />
+  <path d="M56 208c12-38 40-60 72-60s60 22 72 60" fill="url(#accent)" />
+  <circle cx="114" cy="88" r="6" fill="#1e3a8a" opacity="0.75" />
+  <circle cx="142" cy="88" r="6" fill="#1e3a8a" opacity="0.75" />
+  <path d="M110 112c8 8 28 8 36 0" stroke="#1e3a8a" stroke-width="6" stroke-linecap="round" fill="none" opacity="0.75" />
+</svg>
