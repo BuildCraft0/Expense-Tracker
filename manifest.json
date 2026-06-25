@@ -1,6 +1,6 @@
 {
-  "name": "Expense Tracker Pro",
-  "short_name": "Tracker Pro",
+  "name": "Expense Tracker",
+  "short_name": "Tracker",
   "description": "Professional glassmorphism expense tracking application.",
   "start_url": "index.html",
   "display": "standalone",

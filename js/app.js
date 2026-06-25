@@ -146,7 +146,7 @@ function buildLayoutShell() {
   sidebar.innerHTML = `
     <div class="sidebar-logo">
       <i class="fas fa-wallet"></i>
-      <span>Tracker Pro</span>
+      <span>Expense Tracker</span>
     </div>
     <ul class="sidebar-menu">
       <li>
@@ -203,7 +203,7 @@ function buildLayoutShell() {
     <a href="profile.html" class="user-profile-badge">
       <div style="text-align: right; display:none; display:sm-block;">
         <p style="font-size:0.9rem; font-weight:600;">${userName}</p>
-        <p style="font-size:0.75rem; color:var(--text-secondary);">${state.settings.userEmail || 'pro@tracker.com'}</p>
+        <p style="font-size:0.75rem; color:var(--text-secondary);">${state.settings.userEmail || 'hello@tracker.com'}</p>
       </div>
       <div class="avatar-wrapper">
         <img src="${avatarUrl}" alt="Avatar">

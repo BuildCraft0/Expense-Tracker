@@ -56,7 +56,7 @@ const TRANSLATIONS = {
     loan_tracker: 'Loan & EMI Tracker',
     emi_calculator: 'EMI Calculator',
     receipt_upload: 'Receipt Upload',
-    about_app: 'About Expense Tracker Pro'
+    about_app: 'About Expense Tracker'
   },
   hi: {
     // Nav & Sidebar

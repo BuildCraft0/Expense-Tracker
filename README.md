@@ -1,10 +1,10 @@
-# Expense Tracker Pro
+# Expense Tracker
 
 A modern offline-first expense tracking web app built with HTML, CSS, and vanilla JavaScript.
 
 ## Overview
 
-Expense Tracker Pro helps you manage:
+Expense Tracker helps you manage:
 
 - income and expenses
 - category-wise budgets
