@@ -62,41 +62,37 @@ The app stores data directly in the browser using `localStorage`, so no backend 
 
 ## Project Structure
 
-```text
-Expense-Tracker/
-|-- index.html
-|-- dashboard.html
-|-- reports.html
-|-- profile.html
-|-- settings.html
-|-- manifest.json
-|-- sw.js
-|-- css/
-|   |-- global.css
-|   |-- components.css
-|   `-- pages.css
-|-- assets/
-|   |-- app-icon.svg
-|   |-- default-avatar.svg
-|   |-- readme-demo.svg
-|   |-- readme-features.svg
-|   `-- readme-flowchart.svg
-`-- js/
-    |-- app.js
-    |-- storage.js
-    |-- dashboard.js
-    |-- report.js
-    |-- settings.js
-    |-- wallet.js
-    |-- budget.js
-    |-- transaction.js
-    |-- chart.js
-    |-- export.js
-    |-- import.js
-    |-- filter.js
-    |-- search.js
-    `-- theme.js
-```
+| Path | Type | Purpose |
+|---|---|---|
+| `index.html` | Page | Welcome screen and secure entry flow |
+| `dashboard.html` | Page | Main dashboard with balance cards, budget, and transactions |
+| `reports.html` | Page | Analytics, charts, filters, and export views |
+| `profile.html` | Page | Profile tools, wallets, savings goal, EMI, and tax calculator |
+| `settings.html` | Page | Theme, language, currency, backup, and restore settings |
+| `manifest.json` | Config | PWA manifest for installable app behavior |
+| `sw.js` | Script | Service worker for caching and offline support |
+| `css/global.css` | Stylesheet | Global theme, layout, variables, and responsive rules |
+| `css/components.css` | Stylesheet | Reusable UI component styles |
+| `css/pages.css` | Stylesheet | Page-specific styling |
+| `assets/app-icon.svg` | Asset | App icon used by the PWA |
+| `assets/default-avatar.svg` | Asset | Default profile avatar |
+| `assets/readme-demo.svg` | Asset | README demo preview image |
+| `assets/readme-features.svg` | Asset | README pictorial feature image |
+| `assets/readme-flowchart.svg` | Asset | README application flowchart |
+| `js/app.js` | Script | Shared app initialization and layout behavior |
+| `js/storage.js` | Script | Browser `localStorage` data handling |
+| `js/dashboard.js` | Script | Dashboard calculations and rendering |
+| `js/report.js` | Script | Reports page logic and analytics updates |
+| `js/settings.js` | Script | Settings page functionality |
+| `js/wallet.js` | Script | Wallet creation, transfer, and balance handling |
+| `js/budget.js` | Script | Budget tracking and limit management |
+| `js/transaction.js` | Script | Transaction create, edit, delete, and listing logic |
+| `js/chart.js` | Script | Chart.js graph rendering helpers |
+| `js/export.js` | Script | CSV and JSON export features |
+| `js/import.js` | Script | Backup import and restore logic |
+| `js/filter.js` | Script | Filter utilities for reports and transactions |
+| `js/search.js` | Script | Search support for transaction views |
+| `js/theme.js` | Script | Theme switching and visual preference handling |
 
 ## How to Run
 
