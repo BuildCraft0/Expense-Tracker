@@ -1,20 +1,40 @@
 # Expense Tracker
 
-A modern offline-first expense tracking web app built with HTML, CSS, and vanilla JavaScript.
+<p>A modern offline-first expense tracking web app built with HTML, CSS, and vanilla JavaScript.</p>
+
+<p><strong>Author:</strong> Aayush Sharma</p>
 
 ## Overview
 
 Expense Tracker helps you manage:
 
-- income and expenses
-- category-wise budgets
-- wallet balances
-- savings goals
-- analytics and charts
-- backup and restore of app data
+- Income and expenses
+- Category-wise budgets
+- Wallet balances
+- Savings goals
+- Analytics and charts
+- Backup and restore of app data
 - PIN lock, theme, language, and currency settings
 
-The app stores data in the browser using `localStorage`, so no backend or database setup is required.
+The app stores data directly in the browser using `localStorage`, so no backend or database setup is required.
+
+## Demo Image
+
+<p align="center">
+  <img src="assets/readme-demo.svg" alt="Expense Tracker demo preview" width="100%">
+</p>
+
+## Pictorial Feature Image
+
+<p align="center">
+  <img src="assets/readme-features.svg" alt="Expense Tracker pictorial feature gallery" width="100%">
+</p>
+
+## Flowchart
+
+<p align="center">
+  <img src="assets/readme-flowchart.svg" alt="Expense Tracker application flowchart" width="100%">
+</p>
 
 ## Features
 
@@ -24,8 +44,9 @@ The app stores data in the browser using `localStorage`, so no backend or databa
 - Reports page with Chart.js visual analytics
 - Wallet management with transfer support
 - Savings goal tracking
-- EMI/loan and income tax calculator
-- JSON backup/restore and CSV export
+- EMI and loan calculator
+- Income tax calculator
+- JSON backup and restore with CSV export
 - PWA support with service worker caching
 - Works mostly offline after assets are cached
 
@@ -37,7 +58,7 @@ The app stores data in the browser using `localStorage`, so no backend or databa
 - Chart.js
 - Font Awesome
 - Browser `localStorage`
-- Service Worker + Web App Manifest
+- Service Worker and Web App Manifest
 
 ## Project Structure
 
@@ -54,6 +75,12 @@ Expense-Tracker/
 |   |-- global.css
 |   |-- components.css
 |   `-- pages.css
+|-- assets/
+|   |-- app-icon.svg
+|   |-- default-avatar.svg
+|   |-- readme-demo.svg
+|   |-- readme-features.svg
+|   `-- readme-flowchart.svg
 `-- js/
     |-- app.js
     |-- storage.js
@@ -94,23 +121,23 @@ http://127.0.0.1:5500/index.html
 
 ### Alternative: Open directly
 
-You can also open `index.html` directly in the browser, but some features like service worker/PWA caching may not work properly on `file://`.
+You can also open `index.html` directly in the browser, but some features like service worker and PWA caching may not work properly on `file://`.
 
 ## First Use
 
-- The app comes with sample data on first load.
-- Data is saved in your browser automatically.
-- PIN lock is disabled by default.
-- If you enable PIN lock and do not change the code, the default PIN is `1234`.
+- The app comes with sample data on first load
+- Data is saved in your browser automatically
+- PIN lock is disabled by default
+- If you enable PIN lock and do not change the code, the default PIN is `1234`
 
 ## Data Storage
 
 - App data is saved in browser `localStorage`
-- Backup/restore options are available in `Settings`
+- Backup and restore options are available in `Settings`
 - Clearing browser storage will remove saved app data
 
 ## Notes
 
-- Internet may be needed on first load for CDN assets such as Chart.js, Font Awesome, Google Fonts, and app icons.
-- After the assets are cached, offline usage improves through the service worker.
-- If you want full offline support from the first load, move external CDN assets into local files.
+- Internet may be needed on first load for CDN assets such as Chart.js, Font Awesome, Google Fonts, and app icons
+- After the assets are cached, offline usage improves through the service worker
+- If you want full offline support from the first load, move external CDN assets into local files
