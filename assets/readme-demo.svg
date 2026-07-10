@@ -1,0 +1,166 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 920" role="img" aria-labelledby="title desc">
+  <title id="title">Expense Tracker demo preview</title>
+  <desc id="desc">A stylized dashboard preview showing balances, transactions, analytics, and wallet tools.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f0c1b"/>
+      <stop offset="50%" stop-color="#17132e"/>
+      <stop offset="100%" stop-color="#0b1220"/>
+    </linearGradient>
+    <linearGradient id="violet" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8b5cf6"/>
+      <stop offset="100%" stop-color="#ec4899"/>
+    </linearGradient>
+    <linearGradient id="mint" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#14b8a6"/>
+    </linearGradient>
+    <linearGradient id="sky" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#60a5fa"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="24" stdDeviation="28" flood-color="#04050c" flood-opacity="0.4"/>
+    </filter>
+    <filter id="softBlur" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="40"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="920" fill="url(#bg)"/>
+  <circle cx="1280" cy="160" r="170" fill="#8b5cf6" opacity="0.22" filter="url(#softBlur)"/>
+  <circle cx="1210" cy="690" r="180" fill="#14b8a6" opacity="0.16" filter="url(#softBlur)"/>
+  <circle cx="420" cy="160" r="140" fill="#ec4899" opacity="0.12" filter="url(#softBlur)"/>
+
+  <g opacity="0.65">
+    <circle cx="86" cy="86" r="4" fill="#f8fafc"/>
+    <circle cx="106" cy="86" r="4" fill="#f8fafc"/>
+    <circle cx="126" cy="86" r="4" fill="#f8fafc"/>
+  </g>
+
+  <text x="90" y="160" fill="#f8fafc" font-size="62" font-weight="700" font-family="Poppins, Segoe UI, Arial, sans-serif">Expense Tracker</text>
+  <text x="90" y="218" fill="#d1d5db" font-size="30" font-family="Poppins, Segoe UI, Arial, sans-serif">Offline-first personal finance workspace with premium glassmorphism UI.</text>
+
+  <g transform="translate(90 282)">
+    <rect x="0" y="0" width="230" height="54" rx="27" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.12)"/>
+    <circle cx="35" cy="27" r="10" fill="url(#violet)"/>
+    <text x="58" y="34" fill="#f8fafc" font-size="22" font-family="Poppins, Segoe UI, Arial, sans-serif">Secure PIN Access</text>
+  </g>
+  <g transform="translate(340 282)">
+    <rect x="0" y="0" width="250" height="54" rx="27" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.12)"/>
+    <circle cx="35" cy="27" r="10" fill="url(#mint)"/>
+    <text x="58" y="34" fill="#f8fafc" font-size="22" font-family="Poppins, Segoe UI, Arial, sans-serif">Wallet and Budget Control</text>
+  </g>
+  <g transform="translate(610 282)">
+    <rect x="0" y="0" width="248" height="54" rx="27" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.12)"/>
+    <circle cx="35" cy="27" r="10" fill="url(#sky)"/>
+    <text x="58" y="34" fill="#f8fafc" font-size="22" font-family="Poppins, Segoe UI, Arial, sans-serif">Reports and Export Tools</text>
+  </g>
+
+  <text x="90" y="410" fill="#ffffff" font-size="26" font-weight="600" font-family="Poppins, Segoe UI, Arial, sans-serif">Demo Preview</text>
+  <text x="90" y="452" fill="#9ca3af" font-size="22" font-family="Poppins, Segoe UI, Arial, sans-serif">A dashboard snapshot, quick actions card, and reports panel inspired by the real pages in this project.</text>
+
+  <g transform="translate(735 132)" filter="url(#shadow)">
+    <rect x="0" y="0" width="765" height="610" rx="36" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.1)"/>
+    <rect x="0" y="0" width="765" height="62" rx="36" fill="rgba(255,255,255,0.08)"/>
+    <circle cx="35" cy="31" r="7" fill="#fb7185"/>
+    <circle cx="59" cy="31" r="7" fill="#fbbf24"/>
+    <circle cx="83" cy="31" r="7" fill="#34d399"/>
+    <rect x="114" y="18" width="255" height="26" rx="13" fill="rgba(255,255,255,0.07)"/>
+
+    <rect x="24" y="86" width="178" height="496" rx="28" fill="rgba(16,18,35,0.72)" stroke="rgba(255,255,255,0.08)"/>
+    <rect x="46" y="112" width="132" height="16" rx="8" fill="url(#violet)"/>
+    <rect x="46" y="165" width="120" height="48" rx="16" fill="rgba(255,255,255,0.07)"/>
+    <rect x="46" y="226" width="120" height="48" rx="16" fill="rgba(255,255,255,0.07)"/>
+    <rect x="46" y="287" width="120" height="48" rx="16" fill="rgba(255,255,255,0.07)"/>
+    <rect x="46" y="348" width="120" height="48" rx="16" fill="rgba(255,255,255,0.07)"/>
+    <rect x="46" y="460" width="108" height="38" rx="19" fill="rgba(255,255,255,0.05)"/>
+
+    <g transform="translate(228 94)">
+      <rect x="0" y="0" width="154" height="104" rx="24" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.1)"/>
+      <circle cx="33" cy="35" r="22" fill="url(#violet)"/>
+      <rect x="69" y="24" width="58" height="12" rx="6" fill="#f8fafc" opacity="0.85"/>
+      <rect x="69" y="48" width="40" height="9" rx="4.5" fill="#9ca3af"/>
+      <rect x="28" y="72" width="98" height="15" rx="7.5" fill="#ffffff" opacity="0.92"/>
+    </g>
+    <g transform="translate(396 94)">
+      <rect x="0" y="0" width="154" height="104" rx="24" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.1)"/>
+      <circle cx="33" cy="35" r="22" fill="url(#mint)"/>
+      <rect x="69" y="24" width="60" height="12" rx="6" fill="#f8fafc" opacity="0.85"/>
+      <rect x="69" y="48" width="42" height="9" rx="4.5" fill="#9ca3af"/>
+      <rect x="28" y="72" width="102" height="15" rx="7.5" fill="#d1fae5"/>
+    </g>
+    <g transform="translate(564 94)">
+      <rect x="0" y="0" width="154" height="104" rx="24" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.1)"/>
+      <circle cx="33" cy="35" r="22" fill="url(#sky)"/>
+      <rect x="69" y="24" width="60" height="12" rx="6" fill="#f8fafc" opacity="0.85"/>
+      <rect x="69" y="48" width="42" height="9" rx="4.5" fill="#9ca3af"/>
+      <rect x="28" y="72" width="96" height="15" rx="7.5" fill="#dbeafe"/>
+    </g>
+
+    <g transform="translate(228 224)">
+      <rect x="0" y="0" width="314" height="166" rx="28" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.1)"/>
+      <rect x="24" y="24" width="120" height="12" rx="6" fill="#f8fafc" opacity="0.8"/>
+      <rect x="24" y="48" width="76" height="8" rx="4" fill="#9ca3af"/>
+      <path d="M34 126 C74 112, 84 78, 126 82 S192 136, 228 106 S280 62, 292 74" fill="none" stroke="url(#violet)" stroke-width="8" stroke-linecap="round"/>
+      <path d="M34 136 C72 148, 118 122, 158 132 S226 154, 292 120" fill="none" stroke="url(#mint)" stroke-width="8" stroke-linecap="round" opacity="0.95"/>
+      <circle cx="228" cy="106" r="6" fill="#f8fafc"/>
+      <circle cx="292" cy="74" r="6" fill="#f8fafc"/>
+      <circle cx="292" cy="120" r="6" fill="#d1fae5"/>
+    </g>
+
+    <g transform="translate(556 224)">
+      <rect x="0" y="0" width="162" height="166" rx="28" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.1)"/>
+      <rect x="26" y="24" width="78" height="12" rx="6" fill="#f8fafc" opacity="0.8"/>
+      <g transform="translate(81 95)">
+        <circle cx="0" cy="0" r="44" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="18"/>
+        <path d="M0 -44 A44 44 0 1 1 -35 26" fill="none" stroke="url(#violet)" stroke-width="18" stroke-linecap="round"/>
+        <path d="M-35 26 A44 44 0 0 1 0 -44" fill="none" stroke="url(#mint)" stroke-width="18" stroke-linecap="round" opacity="0.9"/>
+      </g>
+    </g>
+
+    <g transform="translate(228 412)">
+      <rect x="0" y="0" width="490" height="146" rx="28" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.1)"/>
+      <rect x="24" y="22" width="128" height="12" rx="6" fill="#f8fafc" opacity="0.8"/>
+      <g transform="translate(24 54)">
+        <rect x="0" y="0" width="442" height="28" rx="14" fill="rgba(255,255,255,0.04)"/>
+        <circle cx="18" cy="14" r="7" fill="url(#violet)"/>
+        <rect x="36" y="8" width="94" height="12" rx="6" fill="#f8fafc" opacity="0.88"/>
+        <rect x="278" y="8" width="72" height="12" rx="6" fill="#9ca3af"/>
+        <rect x="370" y="6" width="56" height="16" rx="8" fill="#d1fae5"/>
+      </g>
+      <g transform="translate(24 90)">
+        <rect x="0" y="0" width="442" height="28" rx="14" fill="rgba(255,255,255,0.04)"/>
+        <circle cx="18" cy="14" r="7" fill="url(#mint)"/>
+        <rect x="36" y="8" width="118" height="12" rx="6" fill="#f8fafc" opacity="0.88"/>
+        <rect x="278" y="8" width="84" height="12" rx="6" fill="#9ca3af"/>
+        <rect x="388" y="6" width="38" height="16" rx="8" fill="#fee2e2"/>
+      </g>
+    </g>
+  </g>
+
+  <g transform="translate(640 620)" filter="url(#shadow)">
+    <rect x="0" y="0" width="220" height="230" rx="30" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.12)"/>
+    <rect x="22" y="20" width="86" height="10" rx="5" fill="#f8fafc" opacity="0.8"/>
+    <rect x="22" y="46" width="120" height="12" rx="6" fill="#9ca3af"/>
+    <rect x="22" y="78" width="176" height="56" rx="20" fill="rgba(139,92,246,0.18)" stroke="rgba(255,255,255,0.08)"/>
+    <circle cx="50" cy="106" r="16" fill="url(#violet)"/>
+    <rect x="76" y="94" width="76" height="10" rx="5" fill="#f8fafc"/>
+    <rect x="76" y="112" width="54" height="8" rx="4" fill="#9ca3af"/>
+    <rect x="22" y="152" width="176" height="18" rx="9" fill="rgba(255,255,255,0.06)"/>
+    <rect x="22" y="182" width="128" height="18" rx="9" fill="rgba(255,255,255,0.06)"/>
+    <text x="22" y="215" fill="#d1d5db" font-size="16" font-family="Poppins, Segoe UI, Arial, sans-serif">Quick add and recent activity</text>
+  </g>
+
+  <g transform="translate(1250 640)" filter="url(#shadow)">
+    <rect x="0" y="0" width="250" height="190" rx="30" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.12)"/>
+    <rect x="24" y="20" width="92" height="10" rx="5" fill="#f8fafc" opacity="0.8"/>
+    <rect x="24" y="48" width="70" height="8" rx="4" fill="#9ca3af"/>
+    <path d="M36 128 L74 108 L112 122 L150 90 L188 102 L214 74" fill="none" stroke="url(#sky)" stroke-width="8" stroke-linecap="round"/>
+    <circle cx="214" cy="74" r="6" fill="#ffffff"/>
+    <rect x="24" y="146" width="202" height="16" rx="8" fill="rgba(255,255,255,0.05)"/>
+  </g>
+
+  <text x="89" y="822" fill="#f8fafc" font-size="24" font-weight="600" font-family="Poppins, Segoe UI, Arial, sans-serif">Highlights</text>
+  <text x="89" y="862" fill="#cbd5e1" font-size="21" font-family="Poppins, Segoe UI, Arial, sans-serif">Dashboard summaries, category reports, wallet tools, savings goals, secure entry, and offline-friendly local data storage.</text>
+</svg>

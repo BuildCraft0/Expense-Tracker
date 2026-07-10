@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 940" role="img" aria-labelledby="title desc">
+  <title id="title">Expense Tracker flowchart</title>
+  <desc id="desc">A flowchart showing how user actions move through UI modules, storage, analytics, and exports.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f0c1b"/>
+      <stop offset="100%" stop-color="#0b1220"/>
+    </linearGradient>
+    <linearGradient id="violet" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8b5cf6"/>
+      <stop offset="100%" stop-color="#ec4899"/>
+    </linearGradient>
+    <linearGradient id="mint" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#14b8a6"/>
+    </linearGradient>
+    <linearGradient id="sky" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#60a5fa"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="20" stdDeviation="24" flood-color="#020617" flood-opacity="0.4"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse">
+      <path d="M0 0 L12 6 L0 12 Z" fill="#94a3b8"/>
+    </marker>
+  </defs>
+
+  <rect width="1600" height="940" fill="url(#bg)"/>
+  <text x="90" y="116" fill="#f8fafc" font-size="58" font-weight="700" font-family="Poppins, Segoe UI, Arial, sans-serif">Application Flowchart</text>
+  <text x="90" y="170" fill="#cbd5e1" font-size="28" font-family="Poppins, Segoe UI, Arial, sans-serif">How tracking data moves from user actions to storage, dashboards, reports, and backup tools.</text>
+
+  <g filter="url(#shadow)">
+    <rect x="90" y="250" width="250" height="420" rx="36" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.1)"/>
+    <rect x="122" y="286" width="186" height="60" rx="30" fill="url(#violet)"/>
+    <text x="162" y="324" fill="#ffffff" font-size="28" font-weight="600" font-family="Poppins, Segoe UI, Arial, sans-serif">User</text>
+    <text x="122" y="388" fill="#f8fafc" font-size="24" font-weight="600" font-family="Poppins, Segoe UI, Arial, sans-serif">Starts from:</text>
+    <text x="122" y="432" fill="#cbd5e1" font-size="20" font-family="Poppins, Segoe UI, Arial, sans-serif">Welcome screen</text>
+    <text x="122" y="466" fill="#cbd5e1" font-size="20" font-family="Poppins, Segoe UI, Arial, sans-serif">PIN unlock</text>
+    <text x="122" y="500" fill="#cbd5e1" font-size="20" font-family="Poppins, Segoe UI, Arial, sans-serif">Dashboard actions</text>
+    <text x="122" y="534" fill="#cbd5e1" font-size="20" font-family="Poppins, Segoe UI, Arial, sans-serif">Reports and tools</text>
+    <text x="122" y="598" fill="#f8fafc" font-size="24" font-weight="600" font-family="Poppins, Segoe UI, Arial, sans-serif">Goal</text>
+    <text x="122" y="636" fill="#cbd5e1" font-size="20" font-family="Poppins, Segoe UI, Arial, sans-serif">Track, review,</text>
+    <text x="122" y="668" fill="#cbd5e1" font-size="20" font-family="Poppins, Segoe UI, Arial, sans-serif">plan, and export</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="430" y="220" width="270" height="140" rx="32" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.1)"/>
+    <rect x="458" y="246" width="96" height="18" rx="9" fill="#f8fafc"/>
+    <rect x="458" y="282" width="170" height="12" rx="6" fill="#94a3b8"/>
+    <text x="458" y="324" fill="#f8fafc" font-size="28" font-weight="600" font-family="Poppins, Segoe UI, Arial, sans-serif">Add Income / Expense</text>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="430" y="400" width="270" height="140" rx="32" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.1)"/>
+    <rect x="458" y="426" width="94" height="18" rx="9" fill="#f8fafc"/>
+    <rect x="458" y="462" width="164" height="12" rx="6" fill="#94a3b8"/>
+    <text x="458" y="504" fill="#f8fafc" font-size="28" font-weight="600" font-family="Poppins, Segoe UI, Arial, sans-serif">Manage Wallets</text>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="430" y="580" width="270" height="140" rx="32" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.1)"/>
+    <rect x="458" y="606" width="96" height="18" rx="9" fill="#f8fafc"/>
+    <rect x="458" y="642" width="168" height="12" rx="6" fill="#94a3b8"/>
+    <text x="458" y="684" fill="#f8fafc" font-size="28" font-weight="600" font-family="Poppins, Segoe UI, Arial, sans-serif">Set Budgets / Goals</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="790" y="320" width="330" height="300" rx="40" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.12)"/>
+    <rect x="840" y="356" width="230" height="58" rx="29" fill="url(#mint)"/>
+    <text x="900" y="394" fill="#ffffff" font-size="28" font-weight="700" font-family="Poppins, Segoe UI, Arial, sans-serif">storage.js</text>
+    <text x="838" y="458" fill="#f8fafc" font-size="24" font-weight="600" font-family="Poppins, Segoe UI, Arial, sans-serif">Data Engine</text>
+    <text x="838" y="498" fill="#cbd5e1" font-size="20" font-family="Poppins, Segoe UI, Arial, sans-serif">Normalizes app state</text>
+    <text x="838" y="530" fill="#cbd5e1" font-size="20" font-family="Poppins, Segoe UI, Arial, sans-serif">Saves to browser localStorage</text>
+    <text x="838" y="562" fill="#cbd5e1" font-size="20" font-family="Poppins, Segoe UI, Arial, sans-serif">Feeds dashboard, reports, profile, settings</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="1210" y="180" width="300" height="130" rx="32" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.1)"/>
+    <rect x="1242" y="208" width="120" height="18" rx="9" fill="#f8fafc"/>
+    <text x="1242" y="262" fill="#f8fafc" font-size="28" font-weight="600" font-family="Poppins, Segoe UI, Arial, sans-serif">Dashboard View</text>
+    <text x="1242" y="292" fill="#cbd5e1" font-size="18" font-family="Poppins, Segoe UI, Arial, sans-serif">Balance, cards, budget, recent transactions</text>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="1210" y="350" width="300" height="130" rx="32" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.1)"/>
+    <rect x="1242" y="378" width="120" height="18" rx="9" fill="#f8fafc"/>
+    <text x="1242" y="432" fill="#f8fafc" font-size="28" font-weight="600" font-family="Poppins, Segoe UI, Arial, sans-serif">Reports View</text>
+    <text x="1242" y="462" fill="#cbd5e1" font-size="18" font-family="Poppins, Segoe UI, Arial, sans-serif">Charts, period filters, print, CSV, JSON</text>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="1210" y="520" width="300" height="130" rx="32" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.1)"/>
+    <rect x="1242" y="548" width="120" height="18" rx="9" fill="#f8fafc"/>
+    <text x="1242" y="602" fill="#f8fafc" font-size="28" font-weight="600" font-family="Poppins, Segoe UI, Arial, sans-serif">Profile and Tools</text>
+    <text x="1242" y="632" fill="#cbd5e1" font-size="18" font-family="Poppins, Segoe UI, Arial, sans-serif">Wallets, savings goal, EMI, tax calculator</text>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="1210" y="690" width="300" height="130" rx="32" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.1)"/>
+    <rect x="1242" y="718" width="120" height="18" rx="9" fill="#f8fafc"/>
+    <text x="1242" y="772" fill="#f8fafc" font-size="28" font-weight="600" font-family="Poppins, Segoe UI, Arial, sans-serif">Settings</text>
+    <text x="1242" y="802" fill="#cbd5e1" font-size="18" font-family="Poppins, Segoe UI, Arial, sans-serif">Theme, language, currency, backup, restore</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="780" y="700" width="350" height="140" rx="34" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.1)"/>
+    <rect x="816" y="730" width="138" height="18" rx="9" fill="#f8fafc"/>
+    <text x="816" y="784" fill="#f8fafc" font-size="28" font-weight="600" font-family="Poppins, Segoe UI, Arial, sans-serif">Outputs and Support</text>
+    <text x="816" y="816" fill="#cbd5e1" font-size="18" font-family="Poppins, Segoe UI, Arial, sans-serif">Backup files, exports, PWA cache, and offline access</text>
+  </g>
+
+  <line x1="340" y1="460" x2="430" y2="290" stroke="#94a3b8" stroke-width="5" marker-end="url(#arrow)"/>
+  <line x1="340" y1="460" x2="430" y2="470" stroke="#94a3b8" stroke-width="5" marker-end="url(#arrow)"/>
+  <line x1="340" y1="460" x2="430" y2="650" stroke="#94a3b8" stroke-width="5" marker-end="url(#arrow)"/>
+
+  <line x1="700" y1="290" x2="790" y2="396" stroke="#94a3b8" stroke-width="5" marker-end="url(#arrow)"/>
+  <line x1="700" y1="470" x2="790" y2="470" stroke="#94a3b8" stroke-width="5" marker-end="url(#arrow)"/>
+  <line x1="700" y1="650" x2="790" y2="544" stroke="#94a3b8" stroke-width="5" marker-end="url(#arrow)"/>
+
+  <line x1="1120" y1="410" x2="1210" y2="245" stroke="#94a3b8" stroke-width="5" marker-end="url(#arrow)"/>
+  <line x1="1120" y1="470" x2="1210" y2="415" stroke="#94a3b8" stroke-width="5" marker-end="url(#arrow)"/>
+  <line x1="1120" y1="530" x2="1210" y2="585" stroke="#94a3b8" stroke-width="5" marker-end="url(#arrow)"/>
+  <line x1="1120" y1="590" x2="1210" y2="755" stroke="#94a3b8" stroke-width="5" marker-end="url(#arrow)"/>
+  <line x1="955" y1="620" x2="955" y2="700" stroke="#94a3b8" stroke-width="5" marker-end="url(#arrow)"/>
+</svg>
